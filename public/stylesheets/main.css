@@ -1,6 +1,7 @@
 .titre {
     color: #242C58;
     font-size: 24pt;
+    font-weight: bold;
     text-align: center;
 }
 
@@ -37,5 +38,11 @@
 }
 
 .saisie {
+    text-align: center;
+}
+
+.erreur {
+    color: #ff0000;
+    font-weight: bold;
     text-align: center;
 }

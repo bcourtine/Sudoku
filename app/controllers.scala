@@ -3,6 +3,7 @@ package controllers
 import _root_.models.{SudokuBoard, SudokuHelper}
 import play._
 import mvc._
+import mvc.Scope.Flash
 import scala.collection.JavaConversions._
 
 /**
@@ -72,7 +73,9 @@ object Sudoku extends Controller {
         val solution = SudokuHelper.solve(sudokuToSolve)
 
         solution match {
-            case None => html.show(title = "Solution du Sudoku", sudoku = sudokuToSolve)
+            case None =>
+                Flash.current().error("Cette grille n'a pas de solution")
+                html.show(title = "Resolver de Sudoku", sudoku = sudokuToSolve)
             case Some(sol) => html.show(title = "Solution du Sudoku", sudoku = sol)
         }
     }

@@ -134,6 +134,10 @@
         </tr>
     </table>
     <div>&nbsp;</div>
+    @if(flash.get("error")) {
+        <div class="erreur">@flash.get("error")</div>
+        <div>&nbsp;</div>
+    }
     <div class="saisie">
         <input type="submit" value="R&eacute;soudre"/> - <input class="saisie" type="reset" value="R&eacute;initialiser"/>
     </div>
