@@ -45,6 +45,8 @@ object Sudoku extends Controller {
 
     /** Affiche la solution du Sudoku fourni. */
     def solution = {
+        // Nettoyage des messages précédents.
+        Flash.current().clear()
         // On récupère les 81 paramètres correspondants aux cases.
         val caseParams: Set[(String, String)] = mvc.Scope.Params.current().allSimple().toSet.filter(_._1.matches("c\\d{2}"))
         // On filtre pour ne garder que les cases valuées.
@@ -69,14 +71,19 @@ object Sudoku extends Controller {
         // Remplacement des cases connues par leurs valeurs.
         val sudokuToSolve = SudokuHelper.prepareSudoku(sudoku, valParams.toList)
 
-        // Calcul de la solution.
-        val solution = SudokuHelper.solve(sudokuToSolve)
+        if(sudokuToSolve.containsDuplicateBoard) {
+            Flash.current().error("Cette grille n'est pas correcte : elle contient des doublons.")
+            html.show(title = "Resolver de Sudoku", sudoku = sudokuToSolve)
+        } else {
+            // Calcul de la solution.
+            val solution = SudokuHelper.solve(sudokuToSolve)
 
-        solution match {
-            case None =>
-                Flash.current().error("Cette grille n'a pas de solution")
-                html.show(title = "Resolver de Sudoku", sudoku = sudokuToSolve)
-            case Some(sol) => html.show(title = "Solution du Sudoku", sudoku = sol)
+            solution match {
+                case None =>
+                    Flash.current().error("Cette grille n'a pas de solution")
+                    html.show(title = "Resolver de Sudoku", sudoku = sudokuToSolve)
+                case Some(sol) => html.show(title = "Solution du Sudoku", sudoku = sol)
+            }
         }
     }
 }

@@ -64,7 +64,63 @@ class SudokuBoard[T](aboard: Array[Either[T, Set[T]]]) {
         new SudokuBoard(newBoard)
     }
 
-    /** Affichage d'une case donnée du Sudoku si elle est définie, "" sinon. */
+    /** Vérification qu'une partie du tableau ne contient pas de valeurs en double. */
+    private def containsDuplicate(is: List[Int]): Boolean = {
+        is match {
+            case Nil => false
+            case head :: tail =>
+                board(head) match {
+                    case Right(_) => containsDuplicate(tail)
+                    case Left(v) => containsDuplicateInternal(tail, v) || containsDuplicate (tail)
+                }
+        }
+    }
+
+    /** Vérification que la partie du tableau sélectionnée ne contient pas la valeur 'n'. */
+    private def containsDuplicateInternal(is: List[Int], n: T): Boolean = {
+        is match {
+            case Nil => false
+            case head :: tail =>
+                board(head) match {
+                    case Right(_) => containsDuplicateInternal(tail, n)
+                    case Left(v) => (n == v) || containsDuplicateInternal(tail, v)
+                }
+        }
+    }
+
+    /** Vérification qu'une ligne contient des doublons. */
+    private def containsDuplicateRow(row: Int): Boolean = {
+        containsDuplicate(((row * width) to ((row + 1) * width - 1)).toList)
+    }
+
+    /** Vérification qu'une colonne contient des doublons. */
+    private def containsDuplicateCol(col: Int): Boolean = {
+        containsDuplicate((col until width * width by width).toList)
+    }
+
+    /** Vérification qu'un bloc contient des doublons. */
+    private def containsDuplicateSquare(square: Int): Boolean = {
+        val start = (square / squareWidth) * (width * squareWidth) + square % squareWidth * squareWidth
+        val indices = Stream.from(start, width).take(squareWidth).flatMap(Stream.from(_).take(squareWidth))
+        containsDuplicate(indices.toList)
+    }
+
+    /** Vérification du tableau complet pour vérifier si une ligne, une colonne, ou un carré contient deux fois la même valeur. */
+    def containsDuplicateBoard(): Boolean = {
+        containsDuplicateRec(0)
+    }
+
+    private def containsDuplicateRec(i: Int): Boolean = {
+        i match {
+            case n if (n == width) => false
+            case n => containsDuplicateRow(n) || containsDuplicateCol(n) || containsDuplicateSquare(n) || containsDuplicateRec(n+1)
+        }
+    }
+
+    /**
+     * Affichage d'une case donnée du Sudoku si elle est définie, "" sinon.
+     * Contrairement aux autres méthodes, les indices de cette méthode commencent à 1.
+     */
     def print(row: Int, col: Int): String = {
         board((row-1)*9 + col-1) match {
             case Left(a) => a.toString
