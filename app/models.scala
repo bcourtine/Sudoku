@@ -86,4 +86,27 @@ object SudokuHelper {
             }
             case _ => throw new Exception // Placate the compiler.
         }
+
+    /** Liste des valeurs possibles pour le Sudoku. */
+    def possibleValues(s: Set[String]): Either[String, Set[String]] = {
+        if (s.filter(_.matches("\\d")).size == s.size) {
+            // Sudoku classique ne contenant que des chiffres.
+            Right(Set("1", "2", "3", "4", "5", "6", "7", "8", "9"))
+        } else {
+            // Sudoku contenant d'autres caractères (lettres).
+            Right(s)
+        }
+    }
+
+    /** Affectation des valeurs connues du Sudoku. */
+    def prepareSudoku(sudokuToSolve: SudokuBoard[String], values: List[(String, String)]): SudokuBoard[String] = {
+        // Expression régulière permettant de connaître la ligne et la colonne de la case.
+        val cazeRE = """c(\d)(\d)""".r
+
+        values match {
+            case Nil => sudokuToSolve
+            case (cazeRE(row, col), value) :: tail =>
+                prepareSudoku(sudokuToSolve.setCell(row.toInt-1, col.toInt-1, value), tail)
+        }
+    }
 }
