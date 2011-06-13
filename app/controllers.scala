@@ -1,5 +1,6 @@
 package controllers
 
+import models.SudokuBoard
 import play._
 import mvc._
 
@@ -20,15 +21,28 @@ object Application extends Controller {
  */
 object Sudoku extends Controller {
 
+    val EMPTY_CASE:Either[Char, Set[Char]] = Right(Set())
+    val EMPTY_SUDOKU:Array[Either[Char, Set[Char]]] = Array(
+        EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE,
+        EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE,
+        EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE,
+        EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE,
+        EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE,
+        EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE,
+        EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE,
+        EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE,
+        EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE, EMPTY_CASE
+    )
+
     import views.Sudoku._
 
     /** Affichage d'une grille de Sudoku vide. */
     def solver = {
-        html.show("Resolver de Sudoku")
+        html.show(title = "Resolver de Sudoku", sudoku = new SudokuBoard[Char](EMPTY_SUDOKU))
     }
 
     /** Affiche la solution du Sudoku fourni. */
     def solution = {
-        html.show("Solution du Sudoku")
+        html.show(title = "Solution du Sudoku", sudoku = new SudokuBoard[Char](EMPTY_SUDOKU))
     }
 }

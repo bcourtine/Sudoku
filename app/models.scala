@@ -63,6 +63,14 @@ class SudokuBoard[T](aboard: Array[Either[T, Set[T]]]) {
         newBoard(row * width + col) = Left(value)
         new SudokuBoard(newBoard)
     }
+
+    /** Affichage d'une case donnée du Sudoku si elle est définie, "" sinon. */
+    def print(row: Int, col: Int): String = {
+        board((row-1)*9 + col-1) match {
+            case Left(a) => a.toString
+            case Right(_) => ""
+        }
+    }
 }
 
 object SudokuHelper {
