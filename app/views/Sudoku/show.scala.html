@@ -1,0 +1,120 @@
+@(
+    title:String
+)(
+    implicit
+    params:play.mvc.Scope.Params,
+    flash:play.mvc.Scope.Flash,
+    errors:Map[String,play.data.validation.Error]
+)
+
+@main(title) {
+
+<div>@title</div>
+<hr />
+    @form(controllers.Sudoku.solution) {
+    <table>
+        <tr>
+            <td><input type="text" name="c11" id="c11" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c12" id="c12" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c13" id="c13" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c14" id="c14" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c15" id="c15" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c16" id="c16" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c17" id="c17" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c18" id="c18" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c19" id="c19" size="1" value="" maxlength="1" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="c21" id="c21" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c22" id="c22" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c23" id="c23" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c24" id="c24" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c25" id="c25" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c26" id="c26" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c27" id="c27" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c28" id="c28" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c29" id="c29" size="1" value="" maxlength="1" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="c31" id="c31" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c32" id="c32" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c33" id="c33" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c34" id="c34" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c35" id="c35" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c36" id="c36" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c37" id="c37" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c38" id="c38" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c39" id="c39" size="1" value="" maxlength="1" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="c41" id="c41" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c42" id="c42" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c43" id="c43" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c44" id="c44" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c45" id="c45" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c46" id="c46" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c47" id="c47" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c48" id="c48" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c49" id="c49" size="1" value="" maxlength="1" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="c51" id="c51" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c52" id="c52" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c53" id="c53" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c54" id="c54" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c55" id="c55" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c56" id="c56" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c57" id="c57" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c58" id="c58" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c59" id="c59" size="1" value="" maxlength="1" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="c61" id="c61" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c62" id="c62" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c63" id="c63" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c64" id="c64" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c65" id="c65" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c66" id="c66" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c67" id="c67" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c68" id="c68" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c69" id="c69" size="1" value="" maxlength="1" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="c71" id="c71" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c72" id="c72" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c73" id="c73" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c74" id="c74" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c75" id="c75" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c76" id="c76" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c77" id="c77" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c78" id="c78" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c79" id="c79" size="1" value="" maxlength="1" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="c81" id="c81" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c82" id="c82" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c83" id="c83" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c84" id="c84" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c85" id="c85" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c86" id="c86" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c87" id="c87" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c88" id="c88" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c89" id="c89" size="1" value="" maxlength="1" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="c91" id="c91" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c92" id="c92" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c93" id="c93" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c94" id="c94" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c95" id="c95" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c96" id="c96" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c97" id="c97" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c98" id="c98" size="1" value="" maxlength="1" /></td>
+            <td><input type="text" name="c99" id="c99" size="1" value="" maxlength="1" /></td>
+        </tr>
+    </table>
+    <div>
+        <input type="submit" value="R&eacute;soudre"/>
+    </div>
+    }
+}
